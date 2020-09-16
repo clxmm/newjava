@@ -65,6 +65,29 @@ RandomAccessFile 支持随机访问文件，可以访问文件的任意位置
     fileOutputStream  -> write() 一滴滴把水转移过去
     DataOutputStream -> writeXxx()  一瓢一瓢的把水转移
     BufferedOutputStream -> write()  先一瓢一瓢放入桶里，在放入缸中
+    
+    
+    
+## 字符流
+### 1. 编码问题
+### 2，认识文本和文本文件
+java的文本（char） 是16位无符号整数，是字符unicode编码（双字节编码），
+文件是 byte byte ···的数据序列
+文本文件是文本（char） 序列，按照某种编码方案（utf-8，gbk序列化为byte的存储结构）
+### 3，字符流 （Reader，Writer）
+字符的处理，一次处理一个字符
+字符的底层依然是基本的字节序列
+inputStreamReader 完成byte流解析为char流，按照编码解析
+outputStreamWrite 提供char流到byte流，按照编码处理
+
+
+FileReader/FileWrite
+
+
+#### 字符流的过滤器
+bufferedReader ----> readerLine 
+bufferedWrite/printWrite -----> 
+
  
  
 
