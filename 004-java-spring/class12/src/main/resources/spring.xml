@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="i.ParentClass" id="parentClass">
+        <property name="s1" value="sq"/>
+        <property name="s2" value="s2"/>
+        <property name="s3" value="s3"/>
+    </bean>
+
+
+
+    <bean id="class1" class="i.Class1" parent="parentClass">
+        <property name="cs1" value="cs1"/>
+        <property name="cs2" value="cs3"/>
+    </bean>
+
+
+    <bean id="class2" class="i.Class2" parent="parentClass">
+        <property name="c21" value="c21"/>
+    </bean>
+
+
+</beans>

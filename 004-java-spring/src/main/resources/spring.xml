@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 构造方法实例化bean -->
+    <bean id="bean" name="bean_1,bean_2" class="i.springioc.Bean">
+
+    </bean>
+    <alias name="bean" alias="bean_3"/>
+
+
+    <!--通过静态方法-->
+    <bean id="bean2" class="i.Slbean.Bean2Factory" factory-method="getBean2"/>
+
+
+    <!-- 通过实例方法 -->
+    <bean class="i.Slbean.Bean3Factory" id="bean3Factory"/>
+    <bean id="bean3" class="i.Slbean.Bean3" factory-bean="bean3Factory" factory-method="getBean3"/>
+
+
+    <!-- 通过构造方法注入bean -->
+    <bean name="anotherBean" class="i.test6zhurubean.AnotherBean"/>
+
+    <bean id="bean0" class="i.test6zhurubean.Beano">
+        <constructor-arg index="0" name="anotherBean" type="i.test6zhurubean.AnotherBean" ref="anotherBean"/>
+        <constructor-arg index="1" name="string" type="java.lang.String" value="aaa"/>
+
+        <!-- 通过set方法注入bean -->
+        <!--注入时创建内部bean  -->
+        <property name="anotherBean1" >
+            <bean class="i.test6zhurubean.AnotherBean"/>
+        </property>
+        <property name="string1" value="2222"/>
+        <property name="stringList">
+            <list>
+                <value>aaa</value>
+                <value>aae</value>
+            </list>
+        </property>
+        <property name="anotherBeanList">
+            <list>
+                <ref bean="anotherBean"></ref>
+            </list>
+        </property>
+
+        <property name="stringSet">
+            <set>
+                <value>aaa</value>
+                <value>aae</value>
+            </set>
+        </property>
+
+        <property name="anotherBeanSet">
+            <set>
+                <ref bean="anotherBean"/>
+                <ref bean="anotherBean"/>
+            </set>
+        </property>
+
+
+        <property name="stringMap">
+            <map>
+                <entry key="www" value="111"/>
+                <entry key="www2" value="1112"/>
+            </map>
+        </property>
+
+        <property name="anotherBeanMap">
+            <map>
+                <entry key-ref="anotherBean" value-ref="anotherBean"/>
+                <entry key-ref="anotherBean" value-ref="anotherBean"/>
+            </map>
+        </property>
+
+
+        <property name="properties">
+            <props>
+                <prop key="rrr">nnnn</prop>
+                <prop key="rr11r">nn22nn</prop>
+            </props>
+        </property>
+
+        <!--注入null -->
+        <property name="anotherBean2">
+            <null></null>
+        </property>
+
+
+    </bean>
+
+    <!-- 简单写法 -->
+<!--    <bean name="anotherBean" class="com.test6zhurubean.AnotherBean"/>-->
+<!--    <bean id="bean0" class="com.test6zhurubean.Beano"-->
+<!--        c:anotherBean-ref="anotherBean" c:string="cccc"-->
+<!--          p:anotherBean1-ref="anotherBean" p:string1="vvv"-->
+<!--    >-->
+<!--    </bean>-->
+
+
+
+
+<!--    作用域-->
+
+    <bean id="beano2" class="i.Test7zuoyonyu.Beano2" scope="singleton">
+
+    </bean>
+
+    <bean id="beano1" class="i.Test7zuoyonyu.Beano1" scope="prototype">
+        <lookup-method name="CreateBeano2" bean="beano2"/>
+    </bean>
+
+
+
+<!--    &lt;!&ndash;自定义作用域 &ndash;&gt;-->
+<!--    <bean class="com.test8zdyScope.MyScope" id="myScope"/>-->
+<!--    -->
+<!--    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">-->
+<!--        <property name="scopes">-->
+<!--            <map>-->
+<!--                <entry key="myScope" value-ref="myScope"/>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+
+<!--    <bean id="beano_1" class="com.Test7zuoyonyu.Beano2" scope="myScope">-->
+
+<!--    </bean>-->
+
+
+
+
+
+
+
+
+
+</beans>
