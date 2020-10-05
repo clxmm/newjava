@@ -1,0 +1,27 @@
+2020-10-04 20:43:38.992 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 55 ] - Starting SpringBoot03LoggingApplicationTests on clx.local with PID 39497 (started by yuanmengen in /Users/yuanmengen/Desktop/source/java/newjava/005-springboot/spring-boot-03-logging)
+2020-10-04 20:43:38.996 [ main ] - [ DEBUG ] [ o.c.s.SpringBoot03LoggingApplicationTests : 56 ] - Running with Spring Boot v2.3.4.RELEASE, Spring v5.2.9.RELEASE
+2020-10-04 20:43:38.996 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 651 ] - No active profile set, falling back to default profiles: default
+2020-10-04 20:43:50.670 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 61 ] - Started SpringBoot03LoggingApplicationTests in 31.974 seconds (JVM running for 33.504)
+2020-10-04 20:43:51.010 [ main ] - [ TRACE ] [ o.c.s.SpringBoot03LoggingApplicationTests : 18 ] - this is
+2020-10-04 20:43:51.011 [ main ] - [ DEBUG ] [ o.c.s.SpringBoot03LoggingApplicationTests : 19 ] - debug info 
+2020-10-04 20:43:51.011 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 22 ] - info
+2020-10-04 20:43:51.011 [ main ] - [ WARN  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 23 ] - warn message
+2020-10-04 20:43:51.011 [ main ] - [ ERROR ] [ o.c.s.SpringBoot03LoggingApplicationTests : 24 ] - error message
+2020-10-04 20:47:20.256 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 55 ] - Starting SpringBoot03LoggingApplicationTests on clx.local with PID 39529 (started by yuanmengen in /Users/yuanmengen/Desktop/source/java/newjava/005-springboot/spring-boot-03-logging)
+2020-10-04 20:47:20.257 [ main ] - [ DEBUG ] [ o.c.s.SpringBoot03LoggingApplicationTests : 56 ] - Running with Spring Boot v2.3.4.RELEASE, Spring v5.2.9.RELEASE
+2020-10-04 20:47:20.258 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 651 ] - No active profile set, falling back to default profiles: default
+2020-10-04 20:47:21.664 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 61 ] - Started SpringBoot03LoggingApplicationTests in 21.73 seconds (JVM running for 22.911)
+2020-10-04 20:47:21.876 [ main ] - [ TRACE ] [ o.c.s.SpringBoot03LoggingApplicationTests : 18 ] - this is
+2020-10-04 20:47:21.876 [ main ] - [ DEBUG ] [ o.c.s.SpringBoot03LoggingApplicationTests : 19 ] - debug info 
+2020-10-04 20:47:21.877 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 22 ] - info
+2020-10-04 20:47:21.877 [ main ] - [ WARN  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 23 ] - warn message
+2020-10-04 20:47:21.877 [ main ] - [ ERROR ] [ o.c.s.SpringBoot03LoggingApplicationTests : 24 ] - error message
+2020-10-04 21:08:04.082 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 55 ] - Starting SpringBoot03LoggingApplicationTests on clx.local with PID 39623 (started by yuanmengen in /Users/yuanmengen/Desktop/source/java/newjava/005-springboot/spring-boot-03-logging)
+2020-10-04 21:08:04.084 [ main ] - [ DEBUG ] [ o.c.s.SpringBoot03LoggingApplicationTests : 56 ] - Running with Spring Boot v2.3.4.RELEASE, Spring v5.2.9.RELEASE
+2020-10-04 21:08:04.085 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 651 ] - No active profile set, falling back to default profiles: default
+2020-10-04 21:08:05.458 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 61 ] - Started SpringBoot03LoggingApplicationTests in 21.748 seconds (JVM running for 23.075)
+2020-10-04 21:08:05.758 [ main ] - [ TRACE ] [ o.c.s.SpringBoot03LoggingApplicationTests : 18 ] - this is
+2020-10-04 21:08:05.759 [ main ] - [ DEBUG ] [ o.c.s.SpringBoot03LoggingApplicationTests : 19 ] - debug info 
+2020-10-04 21:08:05.759 [ main ] - [ INFO  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 22 ] - info
+2020-10-04 21:08:05.759 [ main ] - [ WARN  ] [ o.c.s.SpringBoot03LoggingApplicationTests : 23 ] - warn message
+2020-10-04 21:08:05.760 [ main ] - [ ERROR ] [ o.c.s.SpringBoot03LoggingApplicationTests : 24 ] - error message

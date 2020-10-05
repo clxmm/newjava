@@ -1,0 +1,12 @@
+2020-10-04 20:16:38.909  WARN 39229 --- [main] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5005 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2020-10-04 20:16:43.916  INFO 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : Starting SpringBoot03LoggingApplicationTests on clx.local with PID 39229 (started by yuanmengen in /Users/yuanmengen/Desktop/source/java/newjava/005-springboot/spring-boot-03-logging)
+2020-10-04 20:16:43.917 DEBUG 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : Running with Spring Boot v2.3.4.RELEASE, Spring v5.2.9.RELEASE
+2020-10-04 20:16:43.918  INFO 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : No active profile set, falling back to default profiles: default
+2020-10-04 20:16:53.009  INFO 39229 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-04 20:16:53.525  INFO 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : Started SpringBoot03LoggingApplicationTests in 24.954 seconds (JVM running for 26.362)
+2020-10-04 20:16:53.788 TRACE 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : this is
+2020-10-04 20:16:53.789 DEBUG 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : debug info 
+2020-10-04 20:16:53.789  INFO 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : info
+2020-10-04 20:16:53.789  WARN 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : warn message
+2020-10-04 20:16:53.789 ERROR 39229 --- [main] .c.s.SpringBoot03LoggingApplicationTests : error message
+2020-10-04 20:16:53.814  INFO 39229 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
