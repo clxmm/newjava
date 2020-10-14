@@ -1,5 +1,6 @@
 package org.clxmm.springboot04web.controller;
 
+import org.clxmm.springboot04web.exception.UserNotException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,11 @@ public class HelloController {
 
 
     @GetMapping("/hello")
-    public String hello() {
+    public String hello(String user) {
 
+        if(user.equals("aaa")) {
+            throw new UserNotException();
+        }
         return "hello;";
     }
 
