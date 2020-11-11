@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <div id="app">
+        <button v-on:click="show()"></button>
+
+        <button @click="show()"></button>
+
+    </div>
+
+
+
+    <script>
+        new new Vue({
+            el: '#app',
+            date: {
+                
+            },
+            methods: {
+                show() {
+                    console.log(new Date())
+                }
+            }
+        })
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<div id="app">
+    <h1 v-bind:title="name">{{name}}</h1>
+    <h1 :title="1+1">{{name}}</h1>
+
+</div>
+
+
+
+<script>
+
+    new new Vue({
+        el: '#app',
+        // 数据模型的定义
+        data: {
+            name: 'clx'
+        }
+    })
+
+
+</script>
+
+    
+</body>
+</html>

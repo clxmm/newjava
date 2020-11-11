@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- import CSS -->
+    <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+   
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="element-ui/lib/index.js"></script>
+
+
+    <div id="app">
+        <!-- 插值表达式，声明式渲染，绑定data中的数据 -->
+        {{name}}
+
+        <!--  显示讲师列表 -->
+        <button @click="getTeacherList()">获取讲师列表</button>
+        <table>
+                <tr v-for="(item ,index) in teacherList">
+                    <td>{{item.name}}</td>
+                    <td>{{item.level}}</td>
+                </tr>
+        </table>
+
+        <el-button   size="mini" round icon="el-icon-share">添加</el-button>
+
+    </div>
+
+    <script>
+
+        new Vue({
+            el: '#app',
+            // 数据模型的定义
+            data: {
+                name: 'clx',
+                teacherList: {}
+            },
+            created () {
+                this.getTeacherList()  
+            },
+            methods: {
+                
+                getTeacherList() {
+
+                        axios.get("http://localhost:8110/admin/edu/teacher/list").then(result => {
+                            console.log(result)
+                            this.teacherList = result.data.data.items
+                            console.log(this.teacherList)
+                        })
+
+                }
+
+            }
+        })
+
+
+    </script>
+    
+</body>
+</html>

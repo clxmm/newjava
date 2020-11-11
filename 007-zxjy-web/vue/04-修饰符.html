@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    修饰符是以半角句号（.）指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。
+
+
+
+
+
+    <div id="app">
+          <!-- 修饰符用于指出一个指令应该以特殊方式绑定。
+    这里的 .prevent 修饰符告诉 v-on 指令：阻止表单默认的提交行为 -->
+
+    <form action="save" v-on:submit.prevent="check()">
+            name: <input type="text" v-model="user.username">
+            <button type="submit">save</button>
+    </form>
+
+    </div>
+
+    <script>
+
+            new Vue({
+                el: '#app',
+                data: {
+                    user: {}
+                },
+                methods: {
+                    check() {
+                        console.log(this.user.username)
+                        if(!this.user.username) {
+                            alert(" please into name")
+                        }
+                        // ajax
+                        console.log("ajax save")
+                    }
+                }
+            })
+
+    </script>
+    
+</body>
+</html>

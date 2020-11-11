@@ -52,7 +52,7 @@ public class Teacher extends BaseEntity {
     private Date joinDate;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
-//    @TableField("is_deleted")
+    @TableField("is_deleted")
     @TableLogic
     private Boolean deleted;
 

@@ -14,3 +14,10 @@ target/
 
 ### VS Code ###
 .vscode/
+
+## node ### 
+**/node_modules/**
+**/vue-element-admin-master/**
+**/.idea/**
+**/target/**
+**/test/**

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <!-- 插值表达式，声明式渲染，绑定data中的数据 -->
+       <table>        
+            <tr v-for="(item,index) in user">
+                <td>{{index}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.age}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+
+        new new Vue({
+            el: '#app',
+            // 数据模型的定义
+            data: {
+                name: 'clx',
+                user: [
+                    {username: 'clx',age:10},
+                    {username: 'hth',age: 20}
+                ]
+            }
+        })
+
+
+    </script>
+    
+</body>
+</html>
