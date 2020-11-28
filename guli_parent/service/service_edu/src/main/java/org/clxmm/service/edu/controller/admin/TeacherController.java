@@ -5,14 +5,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.clxmm.common.base.result.R;
 import org.clxmm.service.edu.entity.Teacher;
 import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
+import org.clxmm.service.edu.feifn.OssFileService;
 import org.clxmm.service.edu.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -26,12 +30,16 @@ import java.util.List;
 @Api(description = "讲师管理",value = "123")
 @RestController
 @RequestMapping("/admin/edu/teacher")
+@Slf4j
 public class TeacherController {
 
 
 
     @Autowired
     private TeacherService teacherService;
+
+    @Autowired
+    private  OssFileService fileService;
 
     @ApiOperation("所有讲师列表")
     @GetMapping("/list")
@@ -43,8 +51,12 @@ public class TeacherController {
     @ApiOperation(value = "根据id删除讲师",notes = "逻辑删除")
     @DeleteMapping("remove/{id}")
     public R removeById(@ApiParam("讲师id") @PathVariable("id") String id) {
-        boolean b = teacherService.removeById(id);
+
 //        System.out.println("b" + b);
+        // 删除讲师头像
+        teacherService.removeAvatarBtId(id);
+
+        boolean b = teacherService.removeById(id);
 
         if (b) {
             return R.ok().message("删除成功");
@@ -103,6 +115,64 @@ public class TeacherController {
         }
         return R.ok().data("teacher",teacher);
     }
+
+
+
+    @ApiOperation(value = "根据ids删除讲师",notes = "逻辑删除")
+    @DeleteMapping("removeS")
+    public R removeByIds(@ApiParam("讲师ids") @RequestBody List<String> ids) {
+
+        boolean b = teacherService.removeByIds(ids);
+        if (b) {
+            return R.ok().message("删除成功");
+        }
+        return R.error().message("删除失败，没有该讲师");
+    }
+
+
+
+    @ApiOperation("根据关键字查询讲师名列表")
+    @GetMapping("list/name/{key}")
+    public  R selectNamesByKey(
+            @ApiParam(value = "关键字",required = true)
+            @PathVariable String key
+    ){
+        List<Map<String,Object>>  nameList = teacherService.selectNamesByKey(key);
+        return R.ok().data("nameList",nameList);
+
+    }
+
+
+    @ApiOperation("测试服务调用")
+    @GetMapping("/test")
+    public  R test() {
+        R test = fileService.test();
+        System.out.println(test);
+        return  R.ok();
+    }
+
+
+    @ApiOperation("测试并发")
+    @GetMapping("test_Concurrent")
+    public R testConcurrent() {
+        log.info("test_Concurrent"  + new Date());
+        return R.ok();
+    }
+
+    // **   sentinel 测试方法 **
+    @GetMapping("message1")
+    public String message1() {
+        return "message1";
+    }
+
+
+    @GetMapping("message2")
+    public String message2() {
+        return "message2";
+    }
+
+
+
 
 }
 

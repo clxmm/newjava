@@ -5,6 +5,9 @@ import org.clxmm.service.edu.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 讲师 服务类
@@ -16,4 +19,13 @@ import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
 public interface TeacherService extends IService<Teacher> {
 
     Page<Teacher> pageSelect(Page<Teacher> page, TeacherQueryVo teacherQueryVo);
+
+    List<Map<String, Object>> selectNamesByKey(String key);
+
+    /**
+     * 删除头像
+     * @param id   讲师的id， 根据讲师的id产看url地址
+     * @return
+     */
+    boolean removeAvatarBtId(String id);
 }

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.clxmm.common.base.result.ExceptionUtils;
 import org.clxmm.common.base.result.R;
 import org.clxmm.common.base.result.ResultCodeEnum;
+import org.clxmm.service.base.exception.ClxmmException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,6 +41,19 @@ public class GlobalExceptionHandler {
         log.error("全局异常的处理" + ExceptionUtils.getMessage(e));
         e.printStackTrace();
         return R.setResult(ResultCodeEnum.BAD_SQL_GRAMMAR);
+    }
+
+    /**
+     * 捕获自定义的异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(ClxmmException.class)
+    @ResponseBody
+    public R eror(ClxmmException e) {
+        log.error("全局异常的处理" + ExceptionUtils.getMessage(e));
+        e.printStackTrace();
+        return R.error().message(e.getMessage()).code(e.getCode());
     }
 
 

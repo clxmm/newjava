@@ -18,7 +18,7 @@ public class TeacherQueryVo {
     private  String joinDateBegin;
 
 
-    private String joinDataEnd;
+    private String joinDateEnd;
 
 
 }
