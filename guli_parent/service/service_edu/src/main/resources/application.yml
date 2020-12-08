@@ -43,6 +43,7 @@ feign:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:org/clxmm/service/edu/mapper/xml/*.xml
 
 # 设置日志级别
 #logging:

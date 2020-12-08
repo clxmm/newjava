@@ -42,6 +42,7 @@ public class ExcelStudentDataListener  extends AnalysisEventListener<ExcelStuden
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
+        log.info("存储剩余的数据");
         log.info("所有数据解析完成！");
     }
 }
