@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div id="app">
+
+        <router-link to="/">首页</router-link>
+        <router-link to="/student">学生</router-link>
+        <router-link to="/teacher">讲师</router-link>
+
+
+        <!-- 路由出口 -->
+
+        <router-view></router-view>
+
+
+    </div>
+
+
+
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://libs.cdnjs.net/vue-router/0.4.0/vue-router.min.js"></script> -->
+    <script src="vue-router.min.js"></script>
+
+    <script>
+
+        // 视图组件
+        const Welcome = { template: '<div>欢迎</div>' }
+
+        const Student = { template: '<div>student list</div>' }
+
+        const Teacher = { template: '<div>teacher list</div>' }
+
+
+
+        // 路由
+        const routes = [
+            {path: '/',redirect: '/welcome'},
+            { path: '/welcome', component: Welcome },
+            { path: '/student', component: Student },
+            { path: '/teacher', component: Teacher }
+        ]
+
+        // 路由实例
+        const router = new VueRouter({
+
+            routes // （缩写）相当于 routes: routes
+
+        })
+
+        // 挂载路由实例
+        new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>
