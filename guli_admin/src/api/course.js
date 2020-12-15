@@ -25,11 +25,34 @@ export default {
     },
     pageList(pageNumber, pageSize, searchObj) {
         return request({
-            url: `/admin/edu/course/list/${pageNumber}/${pageSize}`,
+            url: `/admin/edu/course/page/${pageNumber}/${pageSize}`,
             method: 'get',
             params: searchObj
         })
     },
+    // 删除课程信息
+    removeById(id) {
+        return request({
+            url: `/admin/edu/course/remove/${id}`,
+            method:'delete'
+        })
+    },
+
+    //根据课程id获取课程发布基本信息
+    getCoursePublishById(id) {
+        return request({
+            url: `admin/edu/course/course-publish/${id}`,
+            method: 'get'
+        })
+    },
+    // 根据课程id发布课程
+    publishCourseById(id) {
+        return request({
+            url: `/admin/edu/course/publish-course/${id}`,
+            method: 'put'
+        })
+    }
+
 
 
 

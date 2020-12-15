@@ -1,17 +1,19 @@
 package org.clxmm.service.edu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.clxmm.service.edu.entity.Course;
-import org.clxmm.service.edu.entity.CourseDescription;
+import org.clxmm.common.base.result.R;
+import org.clxmm.service.edu.entity.*;
 import org.clxmm.service.edu.entity.form.CourseInfoForm;
+import org.clxmm.service.edu.entity.vo.CoursePublishVo;
 import org.clxmm.service.edu.entity.vo.CourseQueryVo;
 import org.clxmm.service.edu.entity.vo.CourseVo;
-import org.clxmm.service.edu.mapper.CourseDescriptionMapper;
-import org.clxmm.service.edu.mapper.CourseMapper;
+import org.clxmm.service.edu.feifn.OssFileService;
+import org.clxmm.service.edu.mapper.*;
 import org.clxmm.service.edu.service.CourseDescriptionService;
 import org.clxmm.service.edu.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -35,7 +37,21 @@ import java.util.List;
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
 
     @Autowired
+    OssFileService ossFileService;
+    @Autowired
     private CourseDescriptionMapper courseDescriptionMapper;
+    @Autowired
+    private VideoMapper videoMapper;
+
+    @Autowired
+    private ChapterMapper chapterMapper;
+
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @Autowired
+    private CourseCollectMapper courseCollectMapper;
+
 
     @Override
     public String saveCourseInfo(CourseInfoForm courseInfoForm) {
@@ -124,6 +140,72 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         page.setRecords(records);
         return page;
 
+    }
+
+    /**
+     * @param id 课程id
+     * @return
+     */
+    @Override
+    public boolean removeCoverById(String id) {
+
+        Course course = baseMapper.selectById(id);
+
+        if (course != null && StringUtils.isNotBlank(course.getCover())) {
+            R r = ossFileService.removeFile(course.getCover());
+            return r.getSuccess();
+        }
+
+        return false;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean removeCourseById(String id) {
+
+        // 收藏信息
+        QueryWrapper<CourseCollect> collectQueryWrapper = new QueryWrapper<>();
+        collectQueryWrapper.eq("course_id", id);
+        courseCollectMapper.delete(collectQueryWrapper);
+
+
+        // 评论信息
+        LambdaQueryWrapper<Comment> commentLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        commentLambdaQueryWrapper.eq(Comment::getCourseId, id);
+        commentMapper.delete(commentLambdaQueryWrapper);
+
+        // 课时信息
+        LambdaQueryWrapper<Video> videoLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        videoLambdaQueryWrapper.eq(Video::getCourseId, id);
+        videoMapper.delete(videoLambdaQueryWrapper);
+
+        // 章节信息
+        LambdaQueryWrapper<Chapter> chapterLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        chapterLambdaQueryWrapper.eq(Chapter::getCourseId, id);
+        chapterMapper.delete(chapterLambdaQueryWrapper);
+
+        //课程详情
+        courseDescriptionMapper.deleteById(id);
+
+        // 课程信息
+        this.removeById(id);
+
+        return true;
+    }
+
+    @Override
+    public CoursePublishVo getCoursePublishVoById(String id) {
+
+
+        return baseMapper.getCoursePublishVoById(id);
+    }
+
+    @Override
+    public Boolean publishCourseById(String id) {
+        Course course = new Course();
+        course.setStatus(Course.COURSE_NORMAL);
+        course.setId(id);
+        return this.updateById(course);
     }
 
 

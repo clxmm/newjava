@@ -95,7 +95,7 @@
 
     <!--  分页 -->
     <el-pagination
-      layout="prev, pager, next,sizes, ->,total"
+      layout="prev, pager, next,sizes, ->,total,jumper"
       :total="total"
       :page-sizes="[5, 10, 20]"
       :page-size="pageNumber"

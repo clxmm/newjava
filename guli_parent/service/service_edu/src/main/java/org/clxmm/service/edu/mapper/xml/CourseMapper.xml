@@ -12,8 +12,8 @@
         c.buy_count AS buyCount,
         c.view_count AS viewCount,
         c.STATUS,
-        c.gmt_create AS gntCreate,
-        c.price,
+        c.gmt_create AS gmtCreate,
+        CONVERT(c.price, DECIMAL(8,2)) AS price,
         s.title AS subjectTitle,
         s2.title AS subjectParentTitle
     </sql>
@@ -32,5 +32,28 @@
         FROM
             <include refid="tables"></include>
         ${ew.customSqlSegment}
+    </select>
+
+    <select id="getCoursePublishVoById" resultType="org.clxmm.service.edu.entity.vo.CoursePublishVo">
+            SELECT
+            c.id,
+            c.title,
+            c.lesson_num AS lessonNum,
+            t.NAME AS teacherName,
+            c.cover,
+            c.buy_count AS buyCount,
+            c.view_count AS viewCount,
+            c.STATUS,
+            CONVERT (
+                c.price,
+            DECIMAL ( 8, 2 )) AS price,
+            s.title AS subjectTitle,
+            s2.title AS subjectParentTitle
+        FROM
+            <include refid="tables"></include>
+        WHERE
+            c.id = #{id}
+
+
     </select>
 </mapper>
