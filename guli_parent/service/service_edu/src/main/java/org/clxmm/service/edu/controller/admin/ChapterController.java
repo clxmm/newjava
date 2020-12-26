@@ -50,14 +50,14 @@ public class ChapterController {
 
 
     @ApiOperation("根据id查询章节")
-    @GetMapping("gatCahpterById/{id}")
+    @GetMapping("gatChapterById/{id}")
     public R getChapterById(
             @ApiParam(value = "章节id", required = true)
             @PathVariable String id
     ) {
         Chapter chapter = chapterService.getById(id);
         if (chapter != null) {
-            return R.ok().message("新增章节成功");
+            return R.ok().data("item",chapter);
         }
         return R.error().message("章节数据不存在");
     }

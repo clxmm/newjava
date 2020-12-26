@@ -127,9 +127,9 @@ export default {
   },
   created() {
     // courseID 来源于路由 
-    if(this.$route.name === 'CourseInfoEdit') {
-      this.$parent.courseId = this.$route.params.id
-    }
+    // if(this.$route.name === 'CourseInfoEdit') {
+    //   this.$parent.courseId = this.$route.params.id
+    // }
 
     // courseid 的来源，来源于父组件
     if (this.$parent.courseId) {
