@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.2/skins/default/aliplayer-min.css">
+
+</head>
+
+
+<div class="prism-player" id="J_prismPlayer"></div>
+
+<script charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.8.2/aliplayer-min.js"></script>
+<!-- 请下载之后使用 -->
+<script charset="utf-8" src="https://player.alicdn.com/aliplayer/presentation/js/aliplayercomponents.min.js"></script>
+
+<script>
+
+    var danmukuList = [{
+        "mode": 1,
+        "text": "哈哈",
+        "stime": 1000,
+        "size": 25,
+        "color": 0xffffff
+
+    }, {
+        "mode": 1,
+        "text": "前方高能",
+        "stime": 2000,
+        "size": 25,
+        "color": 0xff0000
+    }, {
+        "mode": 1,
+        "text": "灵魂歌手",
+        "stime": 30000,
+        "size": 25,
+        "color": 0xff0000
+    }, {
+        "mode": 1,
+        "text": "顺手一划",
+        "stime": 10000,
+        "size": 25,
+        "color": 0x00c1de
+    }]
+
+    var player = new Aliplayer({
+        /* 弹幕组件集成了 CommentCoreLibrary 框架, 更多 Api 请查看文档 https://github.com/jabbany/CommentCoreLibrary/ */
+
+
+        id: 'J_prismPlayer',
+        width: '100%',
+        //播放配置
+        //播放方式一：支持播放地址播放,此播放优先级最高，此种方式不能播放加密视频
+        source: 'https://outin-d556c99f444c11ebab1f400163e1c94a4.oss-cn-shanghai.aliyuncs.com/sv/1dc0b53a-1768a5e0af4/1dc0b53a-1768a5e0af4.mp4?Expires=1608985388&OSSAccessKeyId=LTAIrkwb21KyGjJl&Signature=MhmxX8L%2Bm9xHb3b8lNQIR8mp7Ag%3D',
+        cover: 'https://img.alicdn.com/tps/TB1EXIhOFXXXXcIaXXXXXXXXXXX-760-340.jpg',
+        // 
+        // vid: '507d81cb97ff4368a5dbb61be6afba11',
+        // playauth: 'eyJTZWN1cml0eVRva2VuIjoiQ0FJU2h3TjFxNkZ0NUIyeWZTaklyNUROT3RUenZyUVFnS2FEUm56YjBVRXpYYmNlcllIenNEejJJSDlJZEhWb0FPOGZ2dlUwbTJ0WTdQc1psck1xRk04Y0ZSR2ZNNW9xc2NvSHFWcjlKcExGc3QySjZyOEpqc1Y5Z2JNV2lsaXBzdlhKYXNEVkVmbDJFNVhFTWlJUi8wMGU2TC8rY2lyWXBUWEhWYlNDbFo5Z2FQa09Rd0M4ZGtBb0xkeEtKd3hrMnQxNFVtWFdPYVNDUHdMU2htUEJMVXhtdldnR2wyUnp1NHV5M3ZPZDVoZlpwMXI4eE80YXhlTDBQb1AyVjgxbExacGxlc3FwM0k0U2M3YmFnaFpVNGdscjhxbHg3c3BCNVN5Vmt0eVdHVWhKL3phTElvaXQ3TnBqZmlCMGVvUUFQb3BGcC9YNmp2QWF3UExVbTliWXhncGhCOFIrWGo3RFpZYXV4N0d6ZW9XVE84MCthS3p3TmxuVXo5bUxMZU9WaVE0L1ptOEJQdzQ0RUxoSWFGMElVRTF5R21DQ2QvWDRvZ3VSUDF6N0VwTG9pdjltamNCSHFIeno1c2VQS2xTMVJMR1U3RDBWSUpkVWJUbHphRUpHZ1RTNExmWldJbGNUS0FNOVd1MlBNYXgzYlFGRHI1M3ZzVGJiWHpaYjBtcHR1UG56ZDE0Sk9CS2cxMUtVR29BQlExb2VaTThaL1RodlMwME94Rkh6UEVqRlNUYW54S2lwb21LZS9iUGtORUxXd21xSXVwSUdzcGtHS2g5WTJkbGxsNXlZVjl0UC85U2t4Ylk0NlFxR0FiQTdXb0U3MWcvTzQ5eWxvVm1TRHFoYVF5NmYxbTBtUUdzR0RVdkVZTFUzekc5QmRsdFFaTENlWFBnS3lzQkg4Y1J5bkFwNlg5c21EekFFV1RHMlE5Zz0iLCJBdXRoSW5mbyI6IntcIkNJXCI6XCJOMTVlcUdFcjRGN0FmcXJIMzNCUW5YMGZNbmZKa25vZzVFZXcrODF3OVprVVYwZGFhYnBZV3BGa1lEaUNxekdwQ3hTUWlxV2FZUG9kZ1pVTFJUT1JMcS9ZaEZPMklva051SnVJRTFIdThjZz1cIixcIkNhbGxlclwiOlwidUFtTUcwcGtrbUxaMGVCL2p3UmhaNTVZYzNtSUY5dHVSZHpzQnZyQytyTT1cIixcIkV4cGlyZVRpbWVcIjpcIjIwMjAtMTItMjZUMDU6MTk6NTJaXCIsXCJNZWRpYUlkXCI6XCI1MDdkODFjYjk3ZmY0MzY4YTVkYmI2MWJlNmFmYmExMVwiLFwiU2lnbmF0dXJlXCI6XCJXeHZIZmxHYmlxY21KeGhCZmlHbkttRGNPQkE9XCJ9IiwiVmlkZW9NZXRhIjp7IlN0YXR1cyI6Ik5vcm1hbCIsIlZpZGVvSWQiOiI1MDdkODFjYjk3ZmY0MzY4YTVkYmI2MWJlNmFmYmExMSIsIlRpdGxlIjoi56ys5YWt6ZuGIiwiQ292ZXJVUkwiOiJodHRwOi8vb3V0aW4tZDU1NmM5OWY0NDRjMTFlYmFiZjQwMDE2M2UxYzk0YTQub3NzLWNuLXNoYW5naGFpLmFsaXl1bmNzLmNvbS81MDdkODFjYjk3ZmY0MzY4YTVkYmI2MWJlNmFmYmExMS9zbmFwc2hvdHMvM2M4ZjYxMmE2ZWI5NGM5OTljMjgzNjc1NGY5YmJkOGEtMDAwMDEuanBnP0V4cGlyZXM9MTYwODk2MzQ5MiZPU1NBY2Nlc3NLZXlJZD1MVEFJcmt3YjIxS3lHakpsJlNpZ25hdHVyZT02TW80QkczVmZrYVBsS2ZEeno1ZDJYalJ1MXclM0QiLCJEdXJhdGlvbiI6MTYuMjc2N30sIkFjY2Vzc0tleUlkIjoiU1RTLk5TeHFuR1NrMTdkaERaajVBZlE4MkJEWFIiLCJBY2Nlc3NLZXlTZWNyZXQiOiI1VWNFUmRreVN6bTdld29VMjdYdWpnYkRjR0FES0NVanBRRVRKcFJxNDZEOSIsIlJlZ2lvbiI6ImNuLXNoYW5naGFpIiwiQ3VzdG9tZXJJZCI6MTc4MTg1MzY5Mjc2ODAxNH0=',
+        // encryptType: '1'
+        isLive: false,
+        components: [{
+            name: 'BulletScreenComponent',
+            type: AliPlayerComponent.BulletScreenComponent,
+            /** Descriptions of the scrolling text component parameters: text, style, bulletPosition 
+             * text: The scrolling text
+             * style: The style of the scrolling text
+             * bulletPosition: The position of the scrolling text. Valid values: 'top', 'bottom', and 'random'. The default is 'random'.
+             */
+            args: ['欢迎使用阿里播放器', { fontSize: '16px', color: '#00c1de' }, 'random']
+        },
+        {
+            name: 'BulletScreenComponent',
+            type: AliPlayerComponent.AliplayerDanmuComponent,
+            /** Descriptions of the scrolling text component parameters: text, style, bulletPosition 
+             * text: The scrolling text
+             * style: The style of the scrolling text
+             * bulletPosition: The position of the scrolling text. Valid values: 'top', 'bottom', and 'random'. The default is 'random'.
+             */
+            args: [danmukuList]
+        }, {
+            name: 'RotateMirrorComponent',
+            type: AliPlayerComponent.RotateMirrorComponent
+
+        }]
+    }, function (player) {
+
+        console.log('播放器创建好了。')
+
+    });
+
+</script>
+
+<body>
+
+</body>
+
+</html>
