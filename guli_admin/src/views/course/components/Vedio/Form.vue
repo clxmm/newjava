@@ -15,8 +15,35 @@
           <el-radio :label="false">默认</el-radio>
         </el-radio-group>
       </el-form-item>
+      <el-form-item label="上传视频">
+        <el-upload
+          ref="upload"
+          action="http://127.0.0.1:8130/admin/vod/media/upload"
+          :on-success="handleUploadSuccess"
+          :on-error="handleUploadError"
+          :file-list="fileList"
+          :on-exceed="handleUploadExceed"
+          :on-remove="handleOnRemove"
+          :before-remove="handleBeforeRemove"
+          :limit="1"
+          :auto-upload="false"
+        >
+          <el-button slot="trigger" size="small" type="primary"
+            >选取视频</el-button
+          >
+          <el-button
+            :disabled="uploadBtnDisabled"
+            style="margin-left: 10px"
+            size="small"
+            type="success"
+            @click="submitUpload()"
+            >上传到服务器</el-button
+          >
+        </el-upload>
+      </el-form-item>
+      <!-- 上传视频 -->
     </el-form>
-      <div slot="footer" class="dialog-footer">
+    <div slot="footer" class="dialog-footer">
       <el-button @click="close()">取 消</el-button>
       <el-button type="primary" @click="saveOrUpdate()">确 定</el-button>
     </div>
@@ -25,24 +52,67 @@
 
 <script>
 import videoApi from "@/api/video";
+
 export default {
   data() {
     return {
       dialogVisible: false,
       video: {
-       
         sort: 0,
-         free: false,
+        free: false,
       },
+      fileList: [], //上传文件列表
+      uploadBtnDisabled: false,
     };
   },
   methods: {
+    handleBeforeRemove(file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`);
+    },
+
+    // 执行视频文件的删除
+    handleOnRemove(file, fileList) {
+      if (!this.video.videoSourceId) {
+        return
+      }
+      videoApi.removeByVodId(this.video.videoSourceId).then(response => {
+        this.video.videoSourceId = ''
+        this.video.videoOriginalName = ''
+        videoApi.update(this.video)
+        this.$message.success(response.message)
+
+      })
+    },
+    handleUploadSuccess(response, file, fileList) {
+      this.uploadBtnDisabled = false;
+      if (response.success) {
+        this.video.videoSourceId = response.data.videoId;
+        this.video.videoOriginalName = file.name;
+      } else {
+        this.$message.error("上传失败1");
+      }
+    },
+    handleUploadError() {
+      this.uploadBtnDisabled = false;
+      this.$message.error("上传失败2");
+    },
+    handleUploadExceed() {
+      this.$message.warning("想要重新上传视频，请先删除已上传的视频");
+    },
+    submitUpload() {
+      this.uploadBtnDisabled = true;
+      this.$refs.upload.submit(); // 提交上传请求
+    },
     open(chapterId, videoId) {
       this.dialogVisible = true;
       this.video.chapterId = chapterId;
       if (videoId) {
         videoApi.getVideoById(videoId).then((response) => {
           this.video = response.data.item;
+          // 回显
+          if (this.video.videoOriginalName) {
+            this.fileList = [{ name: this.video.videoOriginalName }];
+          }
         });
       }
     },
@@ -77,6 +147,7 @@ export default {
         free: false,
         sort: 0,
       };
+      this.fileList = []; //重置视频上传列表
     },
     deleteVideoById(id) {
       this.$confirm("此操作将永久删除该课时，是否继续?", "提示", {

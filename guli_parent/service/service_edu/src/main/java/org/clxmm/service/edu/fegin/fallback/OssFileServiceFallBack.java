@@ -1,8 +1,8 @@
-package org.clxmm.service.edu.feifn.fallback;
+package org.clxmm.service.edu.fegin.fallback;
 
 import lombok.extern.slf4j.Slf4j;
 import org.clxmm.common.base.result.R;
-import org.clxmm.service.edu.feifn.OssFileService;
+import org.clxmm.service.edu.fegin.OssFileService;
 import org.springframework.stereotype.Service;
 
 /**

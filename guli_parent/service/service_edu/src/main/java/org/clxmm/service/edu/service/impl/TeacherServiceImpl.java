@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.clxmm.common.base.result.R;
 import org.clxmm.service.edu.entity.Teacher;
 import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
-import org.clxmm.service.edu.feifn.OssFileService;
+import org.clxmm.service.edu.fegin.OssFileService;
 import org.clxmm.service.edu.mapper.TeacherMapper;
 import org.clxmm.service.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

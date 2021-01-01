@@ -77,6 +77,10 @@ public class VideoController {
             @ApiParam(value = "课时id",required = true)
             @PathVariable String id
     ) {
+
+        // 删除阿里云上的视频
+        videoService.removeMediaVideoById(id);
+
         boolean remove = videoService.removeById(id);
         if (remove) {
             return R.ok().message("删除成功");

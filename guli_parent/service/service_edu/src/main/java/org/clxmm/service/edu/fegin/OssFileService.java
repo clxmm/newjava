@@ -1,12 +1,10 @@
-package org.clxmm.service.edu.feifn;
+package org.clxmm.service.edu.fegin;
 
-import io.swagger.annotations.ApiParam;
 import org.clxmm.common.base.result.R;
-import org.clxmm.service.edu.feifn.fallback.OssFileServiceFallBack;
+import org.clxmm.service.edu.fegin.fallback.OssFileServiceFallBack;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author clxmm

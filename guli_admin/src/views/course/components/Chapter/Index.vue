@@ -106,7 +106,7 @@ export default {
         type: "warning",
       })
         .then(() => {
-          return courseApi.removeById(id);
+          return chapterApi.removeById(chapterId);
         })
         .then((response) => {
           this.fetchNodeList();

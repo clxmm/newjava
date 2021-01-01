@@ -12,7 +12,7 @@ export default {
     // 根据章节id删除
     removeById(id) {
         return request({
-            url: `/admin/edu/chapter/deleteChapterById /${id}`,
+            url: `/admin/edu/chapter/deleteChapterById/${id}`,
             method: 'delete'
         })
     },

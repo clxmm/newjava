@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.clxmm.common.base.result.R;
 import org.clxmm.service.edu.entity.Teacher;
 import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
-import org.clxmm.service.edu.feifn.OssFileService;
+import org.clxmm.service.edu.fegin.OssFileService;
 import org.clxmm.service.edu.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

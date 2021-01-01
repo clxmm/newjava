@@ -10,6 +10,7 @@ import org.clxmm.common.base.result.R;
 import org.clxmm.service.edu.entity.Chapter;
 import org.clxmm.service.edu.entity.vo.ChapterVo;
 import org.clxmm.service.edu.service.ChapterService;
+import org.clxmm.service.edu.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,9 @@ public class ChapterController {
 
     @Autowired
     private ChapterService chapterService;
+
+    @Autowired
+    private VideoService videoService;
 
 
     @ApiOperation("新增章节")
@@ -78,13 +82,14 @@ public class ChapterController {
 
 
     @ApiOperation("根据ID删除章节")
-    @DeleteMapping("deleteChapterById")
+    @DeleteMapping("deleteChapterById/{id}")
     public R deleteChapterById(
             @ApiParam(value = "章节id", required = true)
             @PathVariable String id
     ) {
 
         // todo 删除视频：VOD
+        videoService.removeMediaVideoByChapterId(id);
 
         boolean result = chapterService.deleteChapterById(id);
 

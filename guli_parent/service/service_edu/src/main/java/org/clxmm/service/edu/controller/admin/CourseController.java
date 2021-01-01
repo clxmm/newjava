@@ -16,6 +16,7 @@ import org.clxmm.service.edu.entity.vo.CourseQueryVo;
 import org.clxmm.service.edu.entity.vo.CourseVo;
 import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
 import org.clxmm.service.edu.service.CourseService;
+import org.clxmm.service.edu.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,9 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
+
+    @Autowired
+    private VideoService videoService;
 
     @ApiOperation("新增课程")
     @PostMapping("save-course-info")
@@ -100,6 +104,10 @@ public class CourseController {
     @ApiOperation(value = "根据id删除课程", notes = "逻辑删除")
     @DeleteMapping("remove/{id}")
     public R removeById(@ApiParam("课程id") @PathVariable("id") String id) {
+
+        // 删除课程里面的视频
+        videoService.removeMediaVideoByCourseId(id);
+
         //删除课程封面
         courseService.removeCoverById(id);
         // 删除课程
