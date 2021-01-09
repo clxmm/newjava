@@ -19,4 +19,10 @@ public interface VideoService {
 
     void removeVideoByList(List<String> ids) throws ClientException;
 
+    /**
+     * 获取视频播放凭证
+     * @param videoSourceId
+     * @return
+     */
+    String getPlayAuth(String videoSourceId) throws ClientException;
 }

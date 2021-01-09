@@ -8,9 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.clxmm.common.base.result.R;
 import org.clxmm.service.edu.entity.*;
 import org.clxmm.service.edu.entity.form.CourseInfoForm;
-import org.clxmm.service.edu.entity.vo.CoursePublishVo;
-import org.clxmm.service.edu.entity.vo.CourseQueryVo;
-import org.clxmm.service.edu.entity.vo.CourseVo;
+import org.clxmm.service.edu.entity.vo.*;
 import org.clxmm.service.edu.fegin.OssFileService;
 import org.clxmm.service.edu.mapper.*;
 import org.clxmm.service.edu.service.CourseService;
@@ -204,6 +202,45 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         course.setStatus(Course.COURSE_NORMAL);
         course.setId(id);
         return this.updateById(course);
+    }
+
+    @Override
+    public List<Course> webSelectList(WebCourseQueryVo webCourseQueryVo) {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        // 查询已发布的课程
+
+        queryWrapper.eq("status", Course.COURSE_NORMAL);
+
+
+        if (!StringUtils.isEmpty(webCourseQueryVo.getSubjectParentId())) {
+            queryWrapper.eq("subject_parent_id", webCourseQueryVo.getSubjectParentId());
+        }
+
+        if (!StringUtils.isEmpty(webCourseQueryVo.getSubjectId())) {
+            queryWrapper.eq("subject_id", webCourseQueryVo.getSubjectId());
+        }
+        if (!StringUtils.isEmpty(webCourseQueryVo.getBuyCountSort())) {
+            queryWrapper.orderByDesc("buy_count");
+        }
+        if (!StringUtils.isEmpty(webCourseQueryVo.getGmtCreateSort())) {
+            queryWrapper.orderByDesc("gmt_create");
+        }
+        if (!StringUtils.isEmpty(webCourseQueryVo.getPriceSort())) {
+            queryWrapper.orderByDesc("price");
+        }
+        return baseMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public WbeCourseVo selectWebCourseVoById(String courseId) {
+        //更新课程浏览数
+        Course course = baseMapper.selectById(courseId);
+        course.setViewCount(course.getVersion() +1);
+        baseMapper.updateById(course);
+
+        return baseMapper.selectWebCourseVoById(courseId);
+
+
     }
 
 

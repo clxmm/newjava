@@ -28,4 +28,11 @@ public interface TeacherService extends IService<Teacher> {
      * @return
      */
     boolean removeAvatarBtId(String id);
+
+    /**
+     *
+     * @param teacherId 讲师id
+     * @return
+     */
+    Map<String, Object> getTeacherInfoById(String teacherId);
 }

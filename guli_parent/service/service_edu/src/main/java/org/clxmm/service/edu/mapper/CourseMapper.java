@@ -8,6 +8,7 @@ import org.clxmm.service.edu.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.clxmm.service.edu.entity.vo.CoursePublishVo;
 import org.clxmm.service.edu.entity.vo.CourseVo;
+import org.clxmm.service.edu.entity.vo.WbeCourseVo;
 
 import java.util.List;
 
@@ -29,4 +30,6 @@ public interface CourseMapper extends BaseMapper<Course> {
             @Param(Constants.WRAPPER) QueryWrapper<Course> queryWrapper);
 
     CoursePublishVo getCoursePublishVoById(String id);
+
+    WbeCourseVo selectWebCourseVoById(String courseId);
 }

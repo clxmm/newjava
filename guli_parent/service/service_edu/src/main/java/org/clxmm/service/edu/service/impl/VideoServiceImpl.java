@@ -71,4 +71,6 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         log.info("要删除的视频ids" + ids);
         vodMediaService.removeVideoByIdList(ids);
     }
+
+
 }

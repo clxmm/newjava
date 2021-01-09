@@ -6,6 +6,9 @@ import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoInfosRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.clxmm.common.base.result.ResultCodeEnum;
@@ -71,7 +74,7 @@ public class VideoServiceImpl implements VideoService {
         int size = ids.size();
         for (int i = 0; i < size; i++) {
             idListStr.append(ids.get(i));
-            if(i == size -1 || i % 20 == 19) {
+            if (i == size - 1 || i % 20 == 19) {
                 System.out.println("idListStr = " + idListStr.toString());
                 request.setVideoIds(idListStr.toString());
                 client.getAcsResponse(request);
@@ -80,13 +83,22 @@ public class VideoServiceImpl implements VideoService {
             }
 
 
-            }
+        }
 
 
+    }
 
+    @Override
+    public String getPlayAuth(String videoSourceId) throws ClientException {
+        //初始化client对象
+        DefaultAcsClient client = AliyunVodSDKUtils.initVodClient(vodProperties.getKeyid(), vodProperties.getKeysecret());
 
+        GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+        request.setVideoId(videoSourceId);
 
+        GetVideoPlayAuthResponse response = client.getAcsResponse(request);
 
+        return response.getPlayAuth();
     }
 
 

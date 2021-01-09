@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.clxmm.service.edu.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.clxmm.service.edu.entity.form.CourseInfoForm;
-import org.clxmm.service.edu.entity.vo.CoursePublishVo;
-import org.clxmm.service.edu.entity.vo.CourseQueryVo;
-import org.clxmm.service.edu.entity.vo.CourseVo;
+import org.clxmm.service.edu.entity.vo.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -59,4 +59,9 @@ public interface CourseService extends IService<Course> {
      * @return
      */
     Boolean publishCourseById(String id);
+
+    List<Course> webSelectList(WebCourseQueryVo webCourseQueryVo);
+
+    // 获取课程信息并更新浏览
+    WbeCourseVo selectWebCourseVoById(String courseId);
 }

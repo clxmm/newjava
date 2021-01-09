@@ -1,18 +1,22 @@
 package org.clxmm.service.edu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.clxmm.common.base.result.R;
+import org.clxmm.service.edu.entity.Course;
 import org.clxmm.service.edu.entity.Teacher;
 import org.clxmm.service.edu.entity.vo.TeacherQueryVo;
 import org.clxmm.service.edu.fegin.OssFileService;
+import org.clxmm.service.edu.mapper.CourseMapper;
 import org.clxmm.service.edu.mapper.TeacherMapper;
 import org.clxmm.service.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +34,9 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
 
     @Autowired
     OssFileService ossFileService;
+
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Override
     public Page<Teacher> pageSelect(Page<Teacher> page, TeacherQueryVo teacherQueryVo) {
@@ -90,5 +97,18 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         }
 
         return false;
+    }
+
+    @Override
+    public Map<String, Object> getTeacherInfoById(String teacherId) {
+        Teacher teacher = baseMapper.selectById(teacherId);
+
+        LambdaQueryWrapper<Course> courseLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        courseLambdaQueryWrapper.eq(Course::getTeacherId,teacherId);
+        List<Course> courseList = courseMapper.selectList(courseLambdaQueryWrapper);
+        Map<String,Object> map = new HashMap<>();
+        map.put("teacher",teacher);
+        map.put("courseList",courseList);
+        return map;
     }
 }
