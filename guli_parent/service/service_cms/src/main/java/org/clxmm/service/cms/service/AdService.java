@@ -1,7 +1,9 @@
 package org.clxmm.service.cms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.clxmm.service.cms.entity.Ad;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.clxmm.service.cms.entity.vo.AdVo;
 
 /**
  * <p>
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AdService extends IService<Ad> {
 
+    IPage<AdVo> selectPage(Long page, Long limit);
+
+    boolean removeAdImageById(String id);
 }

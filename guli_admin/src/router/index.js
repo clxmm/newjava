@@ -121,10 +121,54 @@ export const constantRouterMap = [
     },
     ]
   },
-
-
-
-
+  //  内容管理
+  {
+    path: '/ad',
+    component: Layout,
+    redirect: '/ad/list',
+    name: 'Course',
+    meta: { title: '内容管理' },
+    children: [{
+      path: 'list',
+      name: 'AdList',
+      component: () => import('@/views/ad/list'),
+      meta: { title: '广告推荐' }
+    },
+    {
+      path: 'info',
+      name: 'AdCreate',
+      component: () => import('@/views/ad/form'),
+      meta: { title: '发布广告' }
+    },
+    {
+      path: 'info/:id',
+      name: 'AdEdit',
+      component: () => import('@/views/ad/form'),
+      meta: { title: '编辑广告' },
+      hidden: true
+    },
+    {
+      path: 'type-list',
+      name: 'AdTypeList',
+      component: () => import('@/views/adType/list'),
+      meta: { title: '推荐位' }
+    },
+    {
+      path: 'type-create',
+      name: 'AdTypeCreate',
+      component: () => import('@/views/adType/form'),
+      meta: { title: '发布广告' }
+    },
+    {
+      path: 'type-edit/:id',
+      name: 'AdTypeEdit',
+      component: () => import('@/views/adType/form'),
+      meta: { title: '编辑推荐位' },
+      hidden: true
+    }
+    
+    ]
+  },
 
 
 
