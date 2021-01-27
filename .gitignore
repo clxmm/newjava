@@ -20,7 +20,7 @@ target/
 **/vue-element-admin-master/**
 **/.idea/**
 **/target/**
-# **/test/**
+**/test/**
 
 **/.mvn/**
 mvnw
