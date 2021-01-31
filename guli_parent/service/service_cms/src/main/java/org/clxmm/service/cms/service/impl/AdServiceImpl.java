@@ -13,6 +13,7 @@ import org.clxmm.service.cms.mapper.AdMapper;
 import org.clxmm.service.cms.service.AdService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,11 +34,10 @@ public class AdServiceImpl extends ServiceImpl<AdMapper, Ad> implements AdServic
     @Override
     public IPage<AdVo> selectPage(Long page, Long limit) {
         QueryWrapper<AdVo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("a.type_id", "s.sort");
-        Page<AdVo> pageParam = new Page(limit, page);
+        queryWrapper.orderByAsc("a.type_id", "a.sort");
+        Page<AdVo> pageParam = new Page(page, limit);
 
         List<AdVo> records = baseMapper.selectPageByQueryWrapper(pageParam, queryWrapper);
-
         pageParam.setRecords(records);
         return pageParam;
     }
@@ -50,5 +50,15 @@ public class AdServiceImpl extends ServiceImpl<AdMapper, Ad> implements AdServic
             return r.getSuccess();
         }
         return false;
+    }
+
+    @Cacheable(value = "index",key = "'selectByAdTypeId'")
+    @Override
+    public List<Ad> selectByAdTypeId(String adTypeId) {
+
+        QueryWrapper<Ad> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByAsc("sort", "id");
+        queryWrapper.eq("type_id", adTypeId);
+        return baseMapper.selectList(queryWrapper);
     }
 }

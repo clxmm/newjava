@@ -14,6 +14,7 @@ import org.clxmm.service.edu.mapper.TeacherMapper;
 import org.clxmm.service.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -44,7 +45,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         queryWrapper.orderByDesc("sort");
 
         if (teacherQueryVo == null) {
-            return baseMapper.selectPage(page,queryWrapper);
+            return baseMapper.selectPage(page, queryWrapper);
         }
 
 
@@ -54,23 +55,23 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         String joinDataEnd = teacherQueryVo.getJoinDateEnd();
 
         if (StringUtils.isNotBlank(name)) {
-            queryWrapper.like("name",name);
+            queryWrapper.like("name", name);
         }
 
         if (level != null) {
-            queryWrapper.eq("level",level);
+            queryWrapper.eq("level", level);
         }
 
         if (StringUtils.isNotBlank(joinDateBegin)) {
-            queryWrapper.gt("join_date",joinDateBegin);
+            queryWrapper.gt("join_date", joinDateBegin);
         }
 
         if (StringUtils.isNotBlank(joinDataEnd)) {
-            queryWrapper.le("join_date",joinDataEnd);
+            queryWrapper.le("join_date", joinDataEnd);
         }
 
 //        String sqlSelect = queryWrapper.getSqlSelect();
-        return baseMapper.selectPage(page,queryWrapper);
+        return baseMapper.selectPage(page, queryWrapper);
     }
 
 
@@ -79,7 +80,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
 
         QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
         wrapper.select("name");
-        wrapper.likeRight("name",key);
+        wrapper.likeRight("name", key);
 
         List<Map<String, Object>> list = baseMapper.selectMaps(wrapper);
         return list;
@@ -89,7 +90,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
     public boolean removeAvatarBtId(String id) {
 
         Teacher teacher = baseMapper.selectById(id);
-        if ( teacher != null) {
+        if (teacher != null) {
             if (StringUtils.isNotBlank(teacher.getAvatar())) {
                 R r = ossFileService.removeFile(teacher.getAvatar());
                 return r.getSuccess();
@@ -104,11 +105,20 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         Teacher teacher = baseMapper.selectById(teacherId);
 
         LambdaQueryWrapper<Course> courseLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        courseLambdaQueryWrapper.eq(Course::getTeacherId,teacherId);
+        courseLambdaQueryWrapper.eq(Course::getTeacherId, teacherId);
         List<Course> courseList = courseMapper.selectList(courseLambdaQueryWrapper);
-        Map<String,Object> map = new HashMap<>();
-        map.put("teacher",teacher);
-        map.put("courseList",courseList);
+        Map<String, Object> map = new HashMap<>();
+        map.put("teacher", teacher);
+        map.put("courseList", courseList);
         return map;
+    }
+
+    @Cacheable(value = "index", key = "'selectHotTeacher'")
+    @Override
+    public List<Teacher> selectHotTeacher() {
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByAsc("sort");
+        queryWrapper.last("limit 4");
+        return baseMapper.selectList(queryWrapper);
     }
 }

@@ -33,7 +33,7 @@ export default {
     updateById(adType) {
         return request({
             baseURL: 'http://127.0.0.1:8140',
-            url: `/admin/cms/ad-type/get/update`,
+            url: `/admin/cms/ad-type/update`,
             method: 'put',
             data: adType
         })

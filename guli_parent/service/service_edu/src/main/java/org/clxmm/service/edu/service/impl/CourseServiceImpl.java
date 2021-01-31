@@ -15,6 +15,7 @@ import org.clxmm.service.edu.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -235,12 +236,22 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public WbeCourseVo selectWebCourseVoById(String courseId) {
         //更新课程浏览数
         Course course = baseMapper.selectById(courseId);
-        course.setViewCount(course.getVersion() +1);
+        course.setViewCount(course.getVersion() + 1);
         baseMapper.updateById(course);
 
         return baseMapper.selectWebCourseVoById(courseId);
 
 
+    }
+
+
+    @Cacheable(value = "index", key = "'selectHotCourse'")
+    @Override
+    public List<Course> selectHotCourse() {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("view_count");
+        queryWrapper.last("limit 8");
+        return baseMapper.selectList(queryWrapper);
     }
 
 

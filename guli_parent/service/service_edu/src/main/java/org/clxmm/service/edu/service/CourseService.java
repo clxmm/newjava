@@ -64,4 +64,6 @@ public interface CourseService extends IService<Course> {
 
     // 获取课程信息并更新浏览
     WbeCourseVo selectWebCourseVoById(String courseId);
+
+    List<Course> selectHotCourse();
 }

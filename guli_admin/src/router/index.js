@@ -135,16 +135,16 @@ export const constantRouterMap = [
       meta: { title: '广告推荐' }
     },
     {
-      path: 'info',
+      path: 'create',
       name: 'AdCreate',
       component: () => import('@/views/ad/form'),
-      meta: { title: '发布广告' }
+      meta: { title: '添加广告推荐' }
     },
     {
-      path: 'info/:id',
+      path: 'edit/:id',
       name: 'AdEdit',
       component: () => import('@/views/ad/form'),
-      meta: { title: '编辑广告' },
+      meta: { title: '编辑广告推荐' },
       hidden: true
     },
     {
@@ -157,7 +157,7 @@ export const constantRouterMap = [
       path: 'type-create',
       name: 'AdTypeCreate',
       component: () => import('@/views/adType/form'),
-      meta: { title: '发布广告' }
+      meta: { title: '添加推荐位' }
     },
     {
       path: 'type-edit/:id',
