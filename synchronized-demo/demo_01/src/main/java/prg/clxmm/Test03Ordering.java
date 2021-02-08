@@ -24,7 +24,7 @@ class Test03Ordering {
         if (ready) {
             r.r1 = num + num;
         } else {
-            r.r1 = 1;
+            r.r1 = 1; 
         }
     }
 
