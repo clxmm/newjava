@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service_ucenter</artifactId>
-
-
+    <artifactId>service_trade</artifactId>
 
     <build>
         <!-- 项目打包时会将java目录中的*.xml文件也进行打包 -->
@@ -29,13 +27,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-        </dependency>
-
-        <!-- session 同步，同步到数据库或redis中 -->
-
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
         </dependency>
     </dependencies>
 

@@ -34,7 +34,7 @@
       <div class="more-sign">
         <h6>社交帐号登录</h6>
         <ul>
-          <li><a id="weixin" class="weixin" href="http://localhost:8150/api/ucenter/wx/login"><i class="iconfont icon-weixin"/></a></li>
+          <li><a id="weixin" class="weixin" href="http://localhost:8160/api/ucenter/wx/login"><i class="iconfont icon-weixin"/></a></li>
           <li><a id="qq" class="qq" target="_blank" href="#"><i class="iconfont icon-qq"/></a></li>
         </ul>
       </div>
@@ -45,6 +45,9 @@
 <script>
 import '~/assets/css/sign.css'
 import '~/assets/css/iconfont.css'
+import cookie from 'js-cookie'
+import loginApi from '~/api/login'
+
 
 export default {
   layout: 'sign',
@@ -52,8 +55,8 @@ export default {
   data() {
     return {
       user: {
-        mobile: '',
-        password: ''
+        mobile: '18203979046',
+        password: '123456'
       }
     }
   },
@@ -61,7 +64,10 @@ export default {
   methods: {
     // 登录
     submitLogin() {
-
+        loginApi.submitLogin(this.user).then(response => {
+          cookie.set("jwt_token",response.data.token,{domain:'localhost'})
+          window.location.href= '/'
+        })
     }
   }
 }

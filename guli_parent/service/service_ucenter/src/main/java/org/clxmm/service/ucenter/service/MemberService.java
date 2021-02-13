@@ -2,6 +2,7 @@ package org.clxmm.service.ucenter.service;
 
 import org.clxmm.service.ucenter.entity.Member;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.clxmm.service.ucenter.entity.vo.LoginVo;
 import org.clxmm.service.ucenter.entity.vo.RegisterVo;
 
 /**
@@ -15,4 +16,8 @@ import org.clxmm.service.ucenter.entity.vo.RegisterVo;
 public interface MemberService extends IService<Member> {
 
     void register(RegisterVo registerVo);
+
+    String login(LoginVo loginVo);
+
+    Member getByOpenid(String openid);
 }
