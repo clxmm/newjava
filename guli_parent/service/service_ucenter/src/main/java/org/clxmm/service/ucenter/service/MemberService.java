@@ -1,5 +1,6 @@
 package org.clxmm.service.ucenter.service;
 
+import org.clxmm.service.base.dto.MemberDto;
 import org.clxmm.service.ucenter.entity.Member;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.clxmm.service.ucenter.entity.vo.LoginVo;
@@ -20,4 +21,6 @@ public interface MemberService extends IService<Member> {
     String login(LoginVo loginVo);
 
     Member getByOpenid(String openid);
+
+    MemberDto getMemberDtoByMemberId(String memberId);
 }

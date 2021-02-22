@@ -7,6 +7,7 @@ import org.clxmm.common.base.result.util.FormUtils;
 import org.clxmm.common.base.result.util.JwtInfo;
 import org.clxmm.common.base.result.util.JwtUtils;
 import org.clxmm.common.base.result.util.MD5;
+import org.clxmm.service.base.dto.MemberDto;
 import org.clxmm.service.base.exception.ClxmmException;
 import org.clxmm.service.ucenter.entity.Member;
 import org.clxmm.service.ucenter.entity.vo.LoginVo;
@@ -14,6 +15,7 @@ import org.clxmm.service.ucenter.entity.vo.RegisterVo;
 import org.clxmm.service.ucenter.mapper.MemberMapper;
 import org.clxmm.service.ucenter.service.MemberService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -126,6 +128,16 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         LambdaQueryWrapper<Member> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Member::getOpenid, openid);
         return baseMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public MemberDto getMemberDtoByMemberId(String memberId) {
+
+        Member member = baseMapper.selectById(memberId);
+        MemberDto memberDto = new MemberDto();
+        BeanUtils.copyProperties(member, memberDto);
+        return memberDto;
+
     }
 
 

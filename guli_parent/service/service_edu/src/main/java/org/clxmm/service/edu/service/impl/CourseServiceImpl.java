@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.clxmm.common.base.result.R;
+import org.clxmm.service.base.dto.CourseDto;
 import org.clxmm.service.edu.entity.*;
 import org.clxmm.service.edu.entity.form.CourseInfoForm;
 import org.clxmm.service.edu.entity.vo.*;
@@ -252,6 +253,18 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         queryWrapper.orderByDesc("view_count");
         queryWrapper.last("limit 8");
         return baseMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public CourseDto getCourseDtoById(String courseId) {
+        return baseMapper.selectCourseDtoById(courseId);
+    }
+
+    @Override
+    public void updateBuyCountById(String id) {
+        Course course = baseMapper.selectById(id);
+        course.setBuyCount(course.getBuyCount() + 1);
+        this.updateById(course);
     }
 
 

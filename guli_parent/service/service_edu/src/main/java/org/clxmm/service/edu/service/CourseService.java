@@ -2,6 +2,7 @@ package org.clxmm.service.edu.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.clxmm.service.base.dto.CourseDto;
 import org.clxmm.service.edu.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.clxmm.service.edu.entity.form.CourseInfoForm;
@@ -66,4 +67,9 @@ public interface CourseService extends IService<Course> {
     WbeCourseVo selectWebCourseVoById(String courseId);
 
     List<Course> selectHotCourse();
+
+    CourseDto getCourseDtoById(String courseId);
+
+
+    void updateBuyCountById(String id);
 }

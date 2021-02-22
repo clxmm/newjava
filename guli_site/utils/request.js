@@ -11,7 +11,7 @@ const service = axios.create({
 // http request 拦截器
 service.interceptors.request.use(
   config => {
-    // 如果cookie中包含guli_token
+    // 如果cookie中 包含guli_token
     // 则发送后端api请求的时候携带token
     var token = cookie.get("jwt_token") 
     if(token) {
@@ -36,7 +36,10 @@ service.interceptors.response.use(
     if (res.code == 20000) {
       return response.data
     } else if (res.code == 23004) { // 获取用户信息失败
+      //  清楚cookie中的token
       cookie.set("jwt_token",'',{domain:'localhost'})
+    } else if (res.code === 25000) { // 支付中
+      return response.data // 不显示错误信息
     } else {
       Message({
         message: res.message || 'error',

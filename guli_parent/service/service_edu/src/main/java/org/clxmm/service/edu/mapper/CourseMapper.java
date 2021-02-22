@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
+import org.clxmm.service.base.dto.CourseDto;
 import org.clxmm.service.edu.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.clxmm.service.edu.entity.vo.CoursePublishVo;
@@ -32,4 +33,6 @@ public interface CourseMapper extends BaseMapper<Course> {
     CoursePublishVo getCoursePublishVoById(String id);
 
     WbeCourseVo selectWebCourseVoById(String courseId);
+
+    CourseDto selectCourseDtoById(String courseId);
 }

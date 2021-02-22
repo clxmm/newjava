@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.clxmm.common.base.result.R;
+import org.clxmm.service.base.dto.CourseDto;
 import org.clxmm.service.edu.entity.Course;
 import org.clxmm.service.edu.entity.vo.ChapterVo;
 import org.clxmm.service.edu.entity.vo.WbeCourseVo;
@@ -38,8 +39,8 @@ public class ApiCourseController {
                           WebCourseQueryVo webCourseQueryVo) {
 
 
-        List<Course> courseList  = courseService.webSelectList(webCourseQueryVo);
-        return R.ok().data("item",courseList).message("课程列表");
+        List<Course> courseList = courseService.webSelectList(webCourseQueryVo);
+        return R.ok().data("item", courseList).message("课程列表");
     }
 
 
@@ -47,17 +48,34 @@ public class ApiCourseController {
     @GetMapping("get/{courseId}")
     public R getById(
             @ApiParam(value = "课程ID", required = true)
-        @PathVariable String courseId){
+            @PathVariable String courseId) {
 
         //查询课程信息和讲师信息
         WbeCourseVo wbeCourseVo = courseService.selectWebCourseVoById(courseId);
 
         //查询当前课程的章节信息
         List<ChapterVo> chapterVoList = chapterService.nestedList(courseId);
-        return R.ok().data("course",wbeCourseVo).data("chapterVoList",chapterVoList);
+        return R.ok().data("course", wbeCourseVo).data("chapterVoList", chapterVoList);
 
     }
 
+    @ApiOperation("根据课程id查询课程信息")
+    @GetMapping("inner/get-course-dto/{courseId}")
+    public CourseDto getCourseDtoById(
+            @ApiParam(value = "课程ID", required = true)
+            @PathVariable String courseId) {
+        CourseDto courseDto = courseService.getCourseDtoById(courseId);
+        return courseDto;
+    }
 
+
+    @ApiOperation("根据课程id更改销售量")
+    @GetMapping("inner/update-buy-count/{id}")
+    public R updateBuyCountById(
+            @ApiParam(value = "课程id", required = true)
+            @PathVariable String id) {
+        courseService.updateBuyCountById(id);
+        return R.ok();
+    }
 
 }
