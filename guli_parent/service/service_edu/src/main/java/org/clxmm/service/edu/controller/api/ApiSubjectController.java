@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  * @date 2021/1/4 8:21 下午
  */
-@CrossOrigin
+//@CrossOrigin
 @Api("课程分类")
 @RestController
 @RequestMapping("/api/edu/subject")

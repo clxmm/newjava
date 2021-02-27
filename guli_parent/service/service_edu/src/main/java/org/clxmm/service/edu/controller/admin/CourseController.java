@@ -32,7 +32,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/edu/course")
-@CrossOrigin
+//@CrossOrigin
 @Api(description = "课程管理")
 @Slf4j
 public class CourseController {

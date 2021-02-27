@@ -18,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @date 2021/1/30 9:23 下午
  */
-@CrossOrigin //解决跨域问题
+//@CrossOrigin //解决跨域问题
 @Api(description = "广告推荐")
 @RestController
 @RequestMapping("/api/cms/ad")

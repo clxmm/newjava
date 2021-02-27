@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2020/12/27 3:00 下午
  */
 @Api("阿里云视频点播")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @Slf4j
 @RequestMapping("/admin/vod/media")

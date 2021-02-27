@@ -29,7 +29,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/cms/ad")
-@CrossOrigin
+//@CrossOrigin
 @Api("广告推荐管理")
 @Slf4j
 public class AdController {

@@ -26,7 +26,7 @@ import java.util.Map;
  * @author clxmm
  * @since 2020-11-04
  */
-@CrossOrigin
+//@CrossOrigin
 @Api(description = "讲师管理",value = "123")
 @RestController
 @RequestMapping("/admin/edu/teacher")

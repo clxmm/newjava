@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2021/1/9 7:04 下午
  */
 @Api("视频点播")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/api/vod/media")
 @Slf4j

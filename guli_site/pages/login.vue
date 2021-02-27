@@ -34,7 +34,7 @@
       <div class="more-sign">
         <h6>社交帐号登录</h6>
         <ul>
-          <li><a id="weixin" class="weixin" href="http://localhost:8160/api/ucenter/wx/login"><i class="iconfont icon-weixin"/></a></li>
+          <li><a id="weixin" class="weixin" href="http://localhost:9110/api/ucenter/wx/login"><i class="iconfont icon-weixin"/></a></li>
           <li><a id="qq" class="qq" target="_blank" href="#"><i class="iconfont icon-qq"/></a></li>
         </ul>
       </div>
@@ -65,8 +65,14 @@ export default {
     // 登录
     submitLogin() {
         loginApi.submitLogin(this.user).then(response => {
+          console.log(response)
           cookie.set("jwt_token",response.data.token,{domain:'localhost'})
-          window.location.href= '/'
+          // window.location.href= '/'   //    登陆后跳转到首页
+          if (document.referrer.indexOf('register') !== -1) {
+            window.location.href = '/'
+          } else {
+              history.go(-1)
+          }
         })
     }
   }

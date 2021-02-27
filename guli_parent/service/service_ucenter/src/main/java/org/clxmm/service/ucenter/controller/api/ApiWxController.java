@@ -31,7 +31,7 @@ import java.util.UUID;
  * @date 2021/2/10 11:52 上午
  */
 
-@CrossOrigin
+//@CrossOrigin
 @Controller//注意这里没有配置 @RestController
 @RequestMapping("/api/ucenter/wx")
 @Slf4j

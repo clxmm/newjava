@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/admin/edu/video")
-@CrossOrigin
+//@CrossOrigin
 @Api(description = "A课时管理")
 @Slf4j
 public class VideoController {

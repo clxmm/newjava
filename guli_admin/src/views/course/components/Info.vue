@@ -65,7 +65,7 @@
       <el-form-item label="课程封面">
         <el-upload
           class="upload-uploader"
-          action="http://localhost:8120/admin/oss/file/upload?module=cover"
+          :action="BASE_API+'/admin/oss/file/upload?module=cover'"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
@@ -123,6 +123,7 @@ export default {
       teacherList: [], // 讲师列表
       subjectList: [], // 课程列表
       subjectLevelTwoList: [], //二级类别
+      BASE_API: process.env.BASE_API
     };
   },
   created() {

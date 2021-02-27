@@ -32,7 +32,7 @@
       <el-form-item label="讲师头像">
         <el-upload
           class="avatar-uploader"
-          action="http://localhost:8120/admin/oss/file/upload?module=clxmm"
+          :action="BASE_API+'/admin/oss/file/upload?module=clxmm'"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
@@ -68,6 +68,7 @@ export default {
       },
       // 默认按钮可用
       saveBtnDisabled: false,
+      BASE_API: process.env.BASE_API
     };
   },
   created() {

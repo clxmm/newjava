@@ -17,7 +17,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2021/1/1 7:40 下午
  */
-@CrossOrigin
+//@CrossOrigin
 @Api("讲师")
 @RestController
 @RequestMapping("/api/edu/teacher")

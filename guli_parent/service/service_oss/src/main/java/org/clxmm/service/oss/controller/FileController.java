@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/11/17 8:56 下午
  */
 @Api(description = "阿里云文件管理")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin/oss/file")
 @Slf4j

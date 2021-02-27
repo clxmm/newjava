@@ -24,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/cms/ad-type")
-@CrossOrigin
+//@CrossOrigin
 @Api("推荐为管理")
 @Slf4j
 public class AdTypeController {

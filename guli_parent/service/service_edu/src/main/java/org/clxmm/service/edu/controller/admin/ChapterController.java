@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/edu/chapter")
-@CrossOrigin
+//@CrossOrigin
 @Api(description = "章节管理")
 @Slf4j
 public class ChapterController {

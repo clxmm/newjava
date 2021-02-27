@@ -21,7 +21,7 @@ import java.util.List;
  * @version 1.0
  * @date 2021/1/3 3:44 下午
  */
-@CrossOrigin
+//@CrossOrigin
 @Api("课程")
 @RestController
 @RequestMapping("/api/edu/course")

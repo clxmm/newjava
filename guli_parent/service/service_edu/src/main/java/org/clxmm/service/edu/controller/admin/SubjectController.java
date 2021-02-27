@@ -28,7 +28,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/edu/subject")
-@CrossOrigin
+//@CrossOrigin
 @Api(description = "课程分类管理")
 @Slf4j
 public class SubjectController {
