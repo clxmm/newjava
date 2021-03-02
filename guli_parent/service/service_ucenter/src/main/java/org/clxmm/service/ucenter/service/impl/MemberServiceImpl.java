@@ -140,5 +140,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 
     }
 
+    @Override
+    public Integer countRegisterNum(String day) {
+        return baseMapper.selectRegisterNumByDay(day);
+    }
+
 
 }

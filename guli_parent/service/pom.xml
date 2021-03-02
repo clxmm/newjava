@@ -19,6 +19,7 @@
         <module>service_sms</module>
         <module>service_ucenter</module>
         <module>service_trade</module>
+        <module>service_statistics</module>
     </modules>
 
     <dependencies>
@@ -33,6 +34,12 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!--配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
 <!--        服务调用-->
