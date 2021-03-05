@@ -12,7 +12,7 @@ import org.openjdk.jcstress.infra.results.I_Result;
 @Outcome(id = {"1","4"}, expect = Expect.ACCEPTABLE, desc = "ok")
 @Outcome(id = "0", expect = Expect.ACCEPTABLE_INTERESTING,desc = "danger")
 @State
-class Test03Ordering {
+public  class Test03Ordering {
 
 
     int num = 0;
